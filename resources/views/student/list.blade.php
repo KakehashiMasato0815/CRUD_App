@@ -2,7 +2,12 @@
 @section('title', 'Tutrial for beginner')
 @section('content')
  <div class="page-header" style="margin-top:-30px;padding-bottom:0px;">
-  <h1><small>受講生一覧</small></h1>
+ <div>
+  <h1>
+  <small>受講生一覧</small>
+  <a href="{{ action('StudentController@new_index') }}" class="btn btn-warning" style="float: right;">新規登録</a>
+  </h1>
+  </div>
   </div>
   <table class="table table-striped table-hover">
   <thead>

@@ -15,4 +15,9 @@ Route::get('/', function() {
     return view('welcome');
 });
 
-Route::get('student/list', 'StudentController@getIndex');
+Route::group(['prefix' => 'student'], function () {
+    Route::get('list', 'StudentController@get_index');
+    Route::get('new', 'StudentController@new_index');
+    Route::patch('new', 'StudentController@new_confirm');
+    Route::post('new', 'StudentController@new_finish');
+});
