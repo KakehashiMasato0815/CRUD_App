@@ -43,4 +43,28 @@ class StudentController extends Controller
         return redirect()->to('student/list');
     }
 
+    public function edit_index($id)
+    {
+        $student = Student::findOrFail($id);
+        return view('student.edit_index')->with('student', $student);
+    }
+
+    public function edit_confirm(ValiDemoRequest $request)
+    {
+        $student = $request->all();
+        return view('student.edit_confirm')->with('student', $student);
+    }
+
+    public function edit_finish(Request $request, $id)
+    {
+        $student = Student::findOrFail($id);
+        $student->name = $request->name;
+        $student->email = $request->email;
+        $student->tel = $request->tel;
+
+        $student->save();
+
+        return redirect()->to('student/list');
+    }
+
 }
