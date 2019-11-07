@@ -26,4 +26,8 @@ Route::group(['prefix' => 'student'], function () {
     Route::get('edit/{id}', 'StudentController@edit_index');
     Route::patch('edit/{id}', 'StudentController@edit_confirm');
     Route::post('edit/{id}', 'StudentController@edit_finish');
+    /* 詳細 */
+    Route::get('show/{id}', 'StudentController@show_index');
+    /* 削除 */
+    Route::post('delete/{id}', 'StudentController@us_delete');
 });

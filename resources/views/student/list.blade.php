@@ -24,9 +24,12 @@
   <tr>
   <td>{{ $student->id }}</td><td>{{ $student->name }}</td><td>{{ $student->email }}</td><td>{{ $student->tel }}</td>
   <td>
-  <a href="" class="btn btn-primary btn-sm">詳細</a>
+  <a href="/student/show/{{ $student->id }}" class="btn btn-primary btn-sm">詳細</a>
   <a href="/student/edit/{{ $student->id }}" class="btn btn-primary btn-sm">編集</a>
-  <a href="" class="btn btn-danger btn-sm">削除</a>
+  <form action="/student/delete/{{ $student->id }}" method="post">
+  {{ csrf_field() }}
+  <input type="submit" class="btn btn-danger btn-sm btn-dell" value="削除">
+  </form>
   </td>
   </tr>
   @endforeach
@@ -37,4 +40,18 @@
   <div class="d-flex justify-content-center mb-5">
     {{ $students->links() }}
 </div>
+@endsection
+
+@section('script')
+  <script>
+    $(function() {
+      $(".btn-dell").click(function() {
+        if (confirm("本当に削除しますか？")) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+    });
+  </script>
 @endsection

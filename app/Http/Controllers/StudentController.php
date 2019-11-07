@@ -67,4 +67,17 @@ class StudentController extends Controller
         return redirect()->to('student/list');
     }
 
+    public function show_index($id)
+    {
+        $student = Student::findOrFail($id);
+        return view('student.show_index')->with('student',$student);
+    }
+
+    public function us_delete($id)
+    {
+        $user = Student::find($id);
+        $user->delete();
+        return redirect()->to('student/list');
+    }
+
 }
