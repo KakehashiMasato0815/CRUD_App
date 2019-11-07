@@ -2,10 +2,20 @@
 @section('title', 'Tutrial for beginner')
 @section('content')
  <div class="page-header" style="margin-top:-30px;padding-bottom:0px;">
+ <div class="row" style="margin-bottom: 30px;">
+   <div class="col-sm-10" style="margin-bottom: 10px;">
+     <form action="" class="form-inline" method="get">
+     <div class="form-group">
+      <input type="text" name="keyword" class="form-control" value="{{ $keyword }}" placeholder="検索キーワード">
+      </div>
+      <input type="submit" value="検索" class="btn btn-info">
+     </form>
+   </div>
+ </div>
  <div>
   <h1>
   <small>受講生一覧</small>
-  <a href="{{ action('StudentController@new_index') }}" class="btn btn-warning" style="float: right;">新規登録</a>
+  <a href="{{ action('StudentController@new_index') }}" class="btn btn-warning" style="float: right;"><i class="glyphicon glyphicon-plus"></i>新規登録</a>
   </h1>
   </div>
   </div>
@@ -38,7 +48,8 @@
 
   <!-- page control -->
   <div class="d-flex justify-content-center mb-5">
-    {{ $students->links() }}
+    {{-- {!! $students->render() !!} --}}
+    {!! $students->appends(['keyword' => $keyword])->render() !!}
 </div>
 @endsection
 

@@ -9,11 +9,20 @@ use App\Http\Requests;
 
 class StudentController extends Controller
 {
-    public function get_index()
+    public function get_index(Request $request)
     {
-        $students = Student::query()->orderBy('id', 'desc')->paginate(10);
+        $keyword = $request->input('keyword');
 
-        return view('student.list')->with('students', $students);
+        $query = Student::query();
+
+        if (!empty($keyword))
+        {
+            $query->where('email', 'like', '%'.$keyword.'%')->orWhere('name', 'like', '%'.$keyword.'%');
+        }
+
+        $students = $query->orderBy('id', 'desc')->paginate(10);
+
+        return view('student.list')->with('students', $students)->with('keyword', $keyword);
 
     }
 
