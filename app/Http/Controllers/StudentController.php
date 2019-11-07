@@ -49,7 +49,7 @@ class StudentController extends Controller
 
         $student->save();
 
-        return redirect()->to('student/list');
+        return redirect()->to('student/list')->with('flashmessage', '登録が完了いたしました');
     }
 
     public function edit_index($id)
@@ -73,7 +73,7 @@ class StudentController extends Controller
 
         $student->save();
 
-        return redirect()->to('student/list');
+        return redirect()->to('student/list')->with('flashmessage', '更新が完了しました');
     }
 
     public function show_index($id)
@@ -86,7 +86,7 @@ class StudentController extends Controller
     {
         $user = Student::find($id);
         $user->delete();
-        return redirect()->to('student/list');
+        return redirect()->to('student/list')->with('flashmessage', '削除が完了しました');
     }
 
 }
